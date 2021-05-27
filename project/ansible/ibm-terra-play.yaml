@@ -1,0 +1,15 @@
+--- 
+- 
+  hosts: localhost
+  name: "AWS_IBM integration via ssh keys using ansTerra"
+  gather_facts: false
+  vars: 
+    terraform_ibm_dir: "../ibm"
+  tasks: 
+    - 
+      name: "terraform ibm module"
+      terraform: 
+        project_path: "{{terraform_ibm_dir}}"
+        state: present
+      register: terraform_ibm_outputs
+

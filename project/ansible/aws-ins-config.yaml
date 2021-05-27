@@ -1,0 +1,15 @@
+---
+
+- hosts: "aws-servers"
+  name: "configuration in aws_instances"
+
+  tasks:
+  - name: "create the ssh keys name"
+    shell: 
+      cmd: "mkdir -p ~/ssh && ssh-keygen -f ~/ssh/ssh_test -N '' -t rsa"
+  - name: "copy public key created from remote server to local"
+    fetch:
+      src:  "/home/ubuntu/ssh/ssh_test.pub"
+      dest: "../instance-ssh"
+      flat: yes
+      validate_checksum: no
